@@ -1,0 +1,21 @@
+<% if @people.errors.any? %>
+    <div id="error_explanation">
+      <h2><%= @people.errors.count %>件のエラーが発生しました。</h2>
+      <ul>
+      <% @people.errors.full_messages.each do |message| %>
+        <li><%= message %></li>
+      <% end %>
+      </ul>
+    </div>
+  <% end %>
+
+<h1>名前編集画面</h1>
+
+<%= form_for(@people) do |f| %>
+
+<h4>名前</h4>
+<%= f.text_field :person_name %>
+
+<%= f.submit "編集" %>
+
+<% end %>
