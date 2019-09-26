@@ -1,0 +1,20 @@
+<h1>名前一覧画面</h1>
+
+<table class="table table-striped">
+	<tr>
+		<th>ID</th>
+		<th>名前</th>
+		<th></th>
+		<th></th>
+	</tr>
+	<% @people.each do |person| %>
+	<tr>
+		<th><%= person.id %></th>
+		<th><%= person.person_name %></th>
+		<th><%= link_to "編集" , edit_person_path(person) %></th>
+		<th><%= link_to "削除" , person_path(person), method: :delete %></th>
+	</tr>
+<% end %>
+</table>
+
+<%= link_to "新規登録", new_person_path %>
