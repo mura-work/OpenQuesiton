@@ -10,7 +10,11 @@
   </head>
 
   <body>
-
+    <ul>
+      <li><%= link_to "Home", users_path %></li>
+      <li><%= link_to "post", new_book_path %></li>
+      <li><%= link_to "logout", destroy_user_session_path, method: :delete %>  </li>
+    </ul>
 
       <% if flash[:notice] %>
         <div class="flash">

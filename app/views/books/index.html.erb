@@ -1,0 +1,11 @@
+<div id="books">
+	<h1>みんなの質問</h1>
+	<% @books.each do |book| %>
+		<div class="box">
+			<div class="book-contents">
+				質問内容：<%= link_to book.body, book_path(book) %></div>
+			<div class="book-person-name">
+				質問者：<%= book.person.person_name %></div>
+		</div>
+	<% end %>
+</div>
