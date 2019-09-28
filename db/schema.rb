@@ -10,17 +10,26 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 2019_09_26_064819) do
+ActiveRecord::Schema.define(version: 2019_09_28_044653) do
 
   create_table "books", force: :cascade do |t|
     t.text "body"
     t.integer "user_id", null: false
     t.integer "person_id", null: false
+    t.integer "genre_id", null: false
     t.integer "favorites_count", default: 0
     t.datetime "created_at", null: false
     t.datetime "updated_at", null: false
+    t.index ["genre_id"], name: "index_books_on_genre_id"
     t.index ["person_id"], name: "index_books_on_person_id"
     t.index ["user_id"], name: "index_books_on_user_id"
+  end
+
+  create_table "genres", force: :cascade do |t|
+    t.string "genre_name"
+    t.datetime "created_at", null: false
+    t.datetime "updated_at", null: false
+    t.index ["genre_name"], name: "index_genres_on_genre_name"
   end
 
   create_table "people", force: :cascade do |t|
