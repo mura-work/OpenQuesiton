@@ -1,8 +1,31 @@
 <div id="books">
 	<div class="box">
 			<div class="book-contents">
-				質問内容：<%= @book.body %></div>
+				質問内容：<%= @book.body %>
+			</div>
 			<div class="book-person-name">
-				回答者：<%= @book.person.person_name %></div>
+				回答者：<%= @book.person.person_name %>
+			</div>
+	</div>
+
+	<% @book.book_comments.each do |book_comment| %>
+		<div class="comment">
+			<%= book_comment.comment %>
+			<div class="comment-info">
+			<%= attachment_image_tag book_comment, :profile_image, :fill, 60,60, fallback: "no_image.jpg"　%>
+			</div>
+			<div class="comment-user">
+				<%= book_comment.user.name %>
+			</div>
+			<div class="comment-date">
+				<%= book_comment.created_at.strftime('%Y/%m/%d') %>
+			</div>
 		</div>
+	<% end %>
+
+	<% if current_user.admin? %>
+		<%= form_for [@book, @book_comment] do |f| %>
+		<%= f.text_area :comment, rows: '5', class: "form-control" %>
+		<%= f.submit "コメントを投稿する" %>
+	<% end %>
 </div>
