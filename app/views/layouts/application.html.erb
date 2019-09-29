@@ -10,17 +10,31 @@
   </head>
 
   <body>
-    <ul>
-      <li><%= link_to "Home", users_path %></li>
-      <li><%= link_to "post", new_book_path %></li>
-      <li><%= link_to "logout", destroy_user_session_path, method: :delete %>  </li>
-    </ul>
+    <header>
+      <ul>
+        <% if user_signed_in? %>
+          <li><%= link_to "Home", users_path %></li>
+          <li><%= link_to "books", books_path %></li>
+          <li><%= link_to "post", new_book_path %></li>
+          <li><%= link_to "logout", destroy_user_session_path, method: :delete %></li>
+        <% else %>
+          <li><%= link_to "Home", "/" %></li>
+          <li><%= link_to "about", "#" %></li>
+        <% end %>
+      </ul>
+    </header>
 
-      <% if flash[:notice] %>
-        <div class="flash">
-          <%= flash[:notice] %>
-        </div>
-      <% end %>
-    <%= yield %>
+    <main>
+        <% if flash[:notice] %>
+          <div class="flash">s
+            <%= flash[:notice] %>
+          </div>
+        <% end %>
+        <%= yield %>
+    </main>
+
+    <footer>
+      <p></p>
+    </footer>
   </body>
 </html>
