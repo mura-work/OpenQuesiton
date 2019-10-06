@@ -8,4 +8,5 @@ class User < ApplicationRecord
   attachment :back_image
 
   has_many :books,dependent: :destroy
+  has_many :book_comments, dependent: :destroy
 end
