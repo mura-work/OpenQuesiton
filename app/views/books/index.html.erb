@@ -14,6 +14,9 @@
 			<div class="book-created_at">
 				作成日：<%= book.created_at.strftime('%Y/%m/%d') %>
 			</div>
+			<div class="books-favorite-link">
+				<%= render partial: 'books/books', locals: {book: book} %>
+			</div>
 		</div>
 	<% end %>
 </div>
