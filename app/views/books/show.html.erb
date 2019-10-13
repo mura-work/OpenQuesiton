@@ -20,7 +20,7 @@
 			<div class="comment-date">
 				<%= book_comment.created_at.strftime('%Y/%m/%d') %>
 			</div>
-			<%= link_to "削除", book.book_comment_path(book_id: @book, id: book_comment.id), method: :delete, "data-confirm" => "本当に削除しますか？" %>
+			<%= link_to "Destroy", book_book_comments_path(book_id: @book, id: book_comment.id), method: :delete, "data-confirm" => "本当に削除しますか？" %>
 		</div>
 	<% end %>
 
