@@ -5,15 +5,15 @@ class ApplicationController < ActionController::Base
     devise_parameter_sanitizer.permit(:sign_up, keys: [:name])
   end
 
-  def after_sigin_up_path_for(resourse)
+  def after_sign_up_path_for(resourse)
   	books_path
   end
 
-  def after_sigin_in_path_for(resourse)
+  def after_sign_in_path_for(resourse)
   	books_path
   end
 
-  def after_sigin_out_path_for(resourse)
+  def after_sign_out_path_for(resourse)
   	root_path
   end
 
