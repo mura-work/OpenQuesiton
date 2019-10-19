@@ -10,31 +10,46 @@
   </head>
 
   <body>
-    <header>
-      <ul>
-        <% if user_signed_in? %>
-          <li><%= link_to "Home", users_path %></li>
-          <li><%= link_to "books", books_path %></li>
-          <li><%= link_to "post", new_book_path %></li>
-          <li><%= link_to "logout", destroy_user_session_path, method: :delete %></li>
-        <% else %>
-          <li><%= link_to "Home", "/" %></li>
-          <li><%= link_to "about", "#" %></li>
-        <% end %>
-      </ul>
+    <header class="navbar navbar-fixed-top navbar-inverse">
+      <div class="container">
+        <nav class="nav navbar-nav navbar-left">
+          <span>OpenQuestion</span>
+        </nav>
+          <ul class="nav navbar-nav navbar-right">
+            <% if user_signed_in? %>
+              <li><%= link_to "GS一覧", users_path %></li>
+              <li><%= link_to "質問一覧", books_path %></li>
+              <li><%= link_to "質問する", new_book_path %></li>
+              <li><%= link_to "GSごとの質問一覧", people_path %></li>
+              <li><%= link_to "ジャンルごとの質問一覧", genres_path %></li>
+              <li><%= link_to "ログアウト", destroy_user_session_path, method: :delete %></li>
+            <% else %>
+              <li><%= link_to "トップに戻る", "/" %></li>
+              <li><%= link_to "ガイドライン", home_about_path %></li>
+              <li><%= link_to "ログインする", new_user_session_path %></li>
+              <li><%= link_to "新規登録する", new_user_registration_path %></li>
+            <% end %>
+          </ul>
+        </nav>
+      </div>
     </header>
 
+
     <main>
-        <% if flash[:notice] %>
-          <div class="flash">
-            <%= flash[:notice] %>
-          </div>
-        <% end %>
-        <%= yield %>
+      <div class="conteiner">
+        <div class="row">
+          <% if flash[:notice] %>
+            <div class="flash">
+              <%= flash[:notice] %>
+            </div>
+          <% end %>
+          <%= yield %>
+        </div>
+      </div>
     </main>
 
     <footer>
-      <p></p>
+      <p class="copyright">©2019 WRL</p>
     </footer>
   </body>
 </html>

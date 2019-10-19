@@ -18,6 +18,11 @@ class BooksController < ApplicationController
 	  @books = Book.all
   end
 
+  def search
+	@books = Book.where(params[:person_id])
+	render :index, locals: {books: @books}
+  end
+
   def show
   	@book = Book.find(params[:id])
   	@book_comment = BookComment.new
