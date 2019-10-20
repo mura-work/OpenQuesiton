@@ -20,8 +20,6 @@
               <li><%= link_to "GS一覧", users_path %></li>
               <li><%= link_to "質問一覧", books_path %></li>
               <li><%= link_to "質問する", new_book_path %></li>
-              <li><%= link_to "GSごとの質問一覧", people_path %></li>
-              <li><%= link_to "ジャンルごとの質問一覧", genres_path %></li>
               <li><%= link_to "ログアウト", destroy_user_session_path, method: :delete %></li>
             <% else %>
               <li><%= link_to "トップに戻る", "/" %></li>
