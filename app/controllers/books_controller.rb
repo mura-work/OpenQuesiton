@@ -19,8 +19,9 @@ class BooksController < ApplicationController
   end
 
   def search
-	@books = Book.where(params[:person_id])
-	render :index, locals: {books: @books}
+	@person_id = params[:person][:person_id].to_i
+	@books = Book.where(person_id: @person_id)
+	render :index, locals: { books: @books}
   end
 
   def show
