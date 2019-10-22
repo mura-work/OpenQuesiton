@@ -19,10 +19,25 @@ class BooksController < ApplicationController
   end
 
   def search
-	@person_id = params[:person][:person_id].to_i
-	@books = Book.where(person_id: @person_id)
-	render :index, locals: { books: @books}
+	if params[:person][:person_id].empty? && params[:genre][:genre_id].empty?
+		@books = Book.all
+		render :index
+    elsif params[:person][:person_id].present? && params[:genre][:genre_id].empty?
+		@person_id = params[:person][:person_id].to_i
+		@books = Book.where(person_id: @person_id)
+		render :index, locals: { books: @books}
+	elsif params[:person][:person_id].empty? && params[:genre][:genre_id].present?
+		@genre_id = params[:genre][:genre_id].to_i
+		@books = Book.where(genre_id: @genre_id)
+		render :index, locals: { books: @books}
+	elsif params[:person][:person_id].present? && params[:genre][:genre_id].present?
+		@person_id = params[:person][:person_id].to_i
+		@genre_id = params[:genre][:genre_id].to_i
+		@books = Book.where(person_id: @person_id, genre_id: @genre_id)
+		render :index, locals: { books: @books}
+	end
   end
+
 
   def show
   	@book = Book.find(params[:id])

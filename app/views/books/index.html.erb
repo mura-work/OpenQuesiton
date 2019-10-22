@@ -1,7 +1,8 @@
 <div id="books">
 	<h1>みんなの質問</h1>
 	<%= form_tag search_books_path, method: :get do %>
-	<%= collection_select( :person, :person_id, Person.all, :id, :person_name, { :prompt => "選択してください" } ) %>
+	<%= collection_select( :person, :person_id, Person.all, :id, :person_name, { :prompt => "人を選択" } ) %>
+	<%= collection_select( :genre, :genre_id, Genre.all, :id, :genre_name, { :prompt => "ジャンルを選択" } ) %>
 	<%= submit_tag "絞り込み" %>
 	<% end %>
 	
