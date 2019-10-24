@@ -6,6 +6,10 @@
 	<%= submit_tag "絞り込み" %>
 	<% end %>
 	
+	<%= form_tag books_path, method: :get do %>
+		<%= select_tag "books_name", options_for_select([["新着順", "1"],["お気に入り順", "2"]]), {:prompt => "選択してください"} %>
+		<%= submit_tag "切り替え" %>
+	<% end %>
 
 
 	<% @books.each do |book| %>
@@ -27,4 +31,5 @@
 			</div>
 		</div>
 	<% end %>
+	<%= paginate @books, class: "paginate" %>
 </div>
