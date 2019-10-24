@@ -6,6 +6,17 @@
 			<div class="book-person-name">
 				回答者：<%= @book.person.person_name %>
 			</div>
+
+			<div class="">
+				ジャンル：<%= @book.genre.genre_name %>
+			</div>
+
+			<div class="book-created_at">
+				作成日：<%= @book.created_at.strftime('%Y/%m/%d') %>
+			</div>
+			<div class="books-favorite-link">
+				<%= render partial: 'books/books', locals: {book: @book} %>
+			</div>
 	</div>
 
 	<% @book.book_comments.each do |book_comment| %>
