@@ -9,10 +9,11 @@
 	        </ul>
 	      </div>
 	  <% end %>
+
 	<h1>新規投稿画面</h1>
 	<%= form_for(@book) do |f| %>
 		<h4>質問内容</h4>
-		<%= f.text_area :body, row:'5', placeholder: "ここに質問を記入してください" %>
+		<%= f.text_area :body, rows: '5', class: "form-control" ,placeholder: "ここに質問を記入してください" %>
 		<h4>誰に答えてほしいか</h4>
 		<%= f.collection_select(:person_id, Person.all, :id, :person_name, { :prompt => "選択してください" , :multiple => true } ) %>
 		<h4>ジャンル</h4>

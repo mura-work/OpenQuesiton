@@ -2,11 +2,95 @@
 // They will automatically be included in application.css.
 // You can use Sass (SCSS) here: http://sass-lang.com/
 
+// ここからindex //
+// showとも兼用 ↓↓ //
 #books {
 	width: 80%;
 	margin: 0 auto;
 }
 
 .box {
-	margin-top: 30px;
+    width: 80%;
+    margin: 30px auto;
+    font-weight: bold;
+    color: #6091d3;/*文字色*/
+    background-color: #62F1BC;
+    border-radius: 10px;/*角の丸み*/
+    padding: 5px;
 }
+
+.contents{
+    word-wrap: break-word;
+    border-radius: 10px;
+    padding: 5px;
+    margin-bottom: 10px;
+    background-color: white;
+}
+
+.left-contents {
+    float: left;
+    margin: 0 0 10px 10px;
+}
+
+.right-contents {
+    float: right;
+    background-color: #FFCC66;/*文字色*/
+    border-radius: 10px;/*角の丸み*/
+    padding: 10px;
+    margin: 10px 20px 0 0;
+}
+// showとも兼用 ↑↑ //
+.q-index{
+    margin: 20px 0;
+}
+
+.q-index-right{
+    float: right;
+}
+
+.q-index-left{
+    float: left;
+}
+
+
+// ここからshow //
+.box1 {
+    width: 80%;
+    margin: 20px auto;
+    font-weight: bold;
+    color: #6091d3;/*文字色*/
+    background-color: #FF99FF;
+    border-radius: 10px;/*角の丸み*/
+    padding: 5px;
+}
+
+.comment{
+    word-wrap: break-word;
+    border-radius: 10px;
+    padding: 5px;
+    margin-bottom: 10px;
+    background-color: white;
+}
+
+.show-left-contents{
+    float:left;
+}
+
+.show-right-contents{
+    float:right;
+    margin-right: 15px;
+}
+
+.comment-user{
+    text-align: center;
+}
+
+.btn-primary {
+    margin-top: 20px;
+}
+
+.btn-danger{
+    margin-top: 20px;
+}
+
+

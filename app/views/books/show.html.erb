@@ -1,44 +1,60 @@
 <div id="books">
-	<div class="box">
-			<div class="book-contents">
-				質問内容：<%= @book.body %>
-			</div>
-			<div class="book-person-name">
+<h1>質問内容</h1>
+	<div class="box1 clearfix">
+		<div class="contents">
+			<%= @book.body %>
+		</div>
+
+		<div class="left-contents">
+			<div class="person-name">
 				回答者：<%= @book.person.person_name %>
 			</div>
-
-			<div class="">
+			<div class="genre-name">
 				ジャンル：<%= @book.genre.genre_name %>
 			</div>
-
-			<div class="book-created_at">
+			<div class="created_at">
 				作成日：<%= @book.created_at.strftime('%Y/%m/%d') %>
 			</div>
-			<% if user_signed_in? %>
-			<div class="books-favorite-link">
-				<%= render partial: 'books/books', locals: {book: @book} %>
+		</div>
+
+		<% if user_signed_in? %>
+			<div class="right-contents">
+				<div class="books-favorite-link">
+					<%= render partial: 'books/books', locals: {book: @book} %>
+				</div>
 			</div>
-			<% end %>
+		<% end %>
 	</div>
 
+	<h2>↓↓質問に対する回答はこちら↓↓</h2>
+
 	<% @book.book_comments.each do |book_comment| %>
-		<div class="comment">
-			<%= book_comment.comment %>
-			<div class="comment-info">
-			<%= attachment_image_tag book_comment.user, :profile_image, :fill, 60,60, fallback: "no_image.jpg" %>
+		<div class="box1 clearfix">
+			<div class="comment">
+				<%= book_comment.comment %>
 			</div>
-			<div class="comment-user">
-				<%= book_comment.user.name %>
+
+			<div class="show-left-contents">
+				<div class="comment-date">
+					<%= book_comment.created_at.strftime('%Y/%m/%d') %>
+				</div>
+				<%= link_to "Destroy", book_book_comments_path(book_id: @book, id: book_comment.id), method: :delete, "data-confirm" => "本当に削除しますか？", :class => "btn btn-danger show" %>
 			</div>
-			<div class="comment-date">
-				<%= book_comment.created_at.strftime('%Y/%m/%d') %>
+			<div class="show-right-contents">
+				<div class="comment-info">
+					<%= attachment_image_tag book_comment.user, :profile_image, :fill, 60,60, :class => 'img-circle', fallback: "no_image.jpg" %>
+				</div>
+				<div class="comment-user">
+					<%= book_comment.user.name %>
+				</div>
 			</div>
-			<%= link_to "Destroy", book_book_comments_path(book_id: @book, id: book_comment.id), method: :delete, "data-confirm" => "本当に削除しますか？" %>
 		</div>
 	<% end %>
+	<br>
 
-		<%= form_for [@book, @book_comment] do |f| %>
-		<%= f.text_area :comment, rows: '5', class: "form-control", placeholder: "コメントをここに" %>
-		<%= f.submit "コメントを投稿する" %>
-		<% end %>
+	<%= form_for [@book, @book_comment] do |f| %>
+	<%= f.text_area :comment, rows: '5', class: "form-control", placeholder: "コメントをここに" %>
+	<%= f.submit "コメントを投稿する", :class => "btn btn-primary show" %>
+	<% end %>
+
 </div>
