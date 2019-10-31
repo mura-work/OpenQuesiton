@@ -1,96 +1,127 @@
-<h1>OpenQuestion</h1>
-
-
-<h3>最近の質問5選</h3>
+<h2>最近の質問5選</h2>
 <% @recent.each do |book| %>
-    <div class="box">
-			<div class="book-contents">
-				質問内容：<%= link_to book.body, book_path(book) %>
+    <div class="box clearfix">
+    <%= link_to book_path(book) do  %>
+			<div class="contents">
+				<%= book.body %>
 			</div>
-			<div class="book-person-name">
-				回答者：<%= book.person.person_name %>
-			</div>
-			<div class="book-genre-name">
-				ジャンル：<%= book.genre.genre_name %>
-			</div>
-			<div class="book-created_at">
-				作成日：<%= book.created_at.strftime('%Y/%m/%d') %>
-			</div>
-			<% if user_signed_in? %>
-			<div class="books-favorite-link">
-				<%= render partial: 'books/books', locals: {book: book} %>
-			</div>
-			<% end %>
-		</div>
+
+            <div class="left-contents">
+                <div class="person-name">
+                    回答者：<%= book.person.person_name %>
+                </div>
+                <div class="genre-name">
+                    ジャンル：<%= book.genre.genre_name %>
+                </div>
+                <div class="created_at">
+                    作成日：<%= book.created_at.strftime('%Y/%m/%d') %>
+                </div>
+            </div>
+
+            <% if user_signed_in? %>
+                <div class="right-contents">
+                    <div class="books-favorite-link">
+                        <%= render partial: 'books/books', locals: {book: @book} %>
+                    </div>
+                </div>
+            <% end %>
+    <% end %>
+	</div>
 <% end %>
 
-<h3>質問ランキング</h3>
-<h5>回答数が多い順</h5>
-<% @person.each do |book| %>
-    <div class="box">
-			<div class="book-contents">
-				質問内容：<%= link_to book.body, book_path(book) %>
-			</div>
-			<div class="book-person-name">
-				回答者：<%= book.person.person_name %>
-			</div>
-			<div class="book-genre-name">
-				ジャンル：<%= book.genre.genre_name %>
-			</div>
-			<div class="book-created_at">
-				作成日：<%= book.created_at.strftime('%Y/%m/%d') %>
-			</div>
-			<% if user_signed_in? %>
-			<div class="books-favorite-link">
-				<%= render partial: 'books/books', locals: {book: book} %>
-			</div>
-			<% end %>
-		</div>
+<h2>回答数が多い人</h2>
+<% @person.each.with_index(1) do |book, i| %>
+    <div class="box clearfix">
+    <%= link_to book_path(book) do  %>
+        <span class="">第<%= i %>位</span>
+        <div class="contents">
+            <%= book.body %>
+        </div>
+
+        <div class="left-contents">
+            <div class="person-name">
+                回答者：<%= book.person.person_name %>
+            </div>
+            <div class="genre-name">
+                ジャンル：<%= book.genre.genre_name %>
+            </div>
+            <div class="created_at">
+                作成日：<%= book.created_at.strftime('%Y/%m/%d') %>
+            </div>
+        </div>
+
+        <% if user_signed_in? %>
+            <div class="right-contents">
+                <div class="books-favorite-link">
+                    <%= render partial: 'books/books', locals: {book: @book} %>
+                </div>
+            </div>
+        <% end %>
+    <% end %>
+	</div>
 <% end %>
 
-<h5>ジャンル多い順</h5>
-<% @genre.each do |book| %>
-    <div class="box">
-			<div class="book-contents">
-				質問内容：<%= link_to book.body, book_path(book) %>
-			</div>
-			<div class="book-person-name">
-				回答者：<%= book.person.person_name %>
-			</div>
-			<div class="book-genre-name">
-				ジャンル：<%= book.genre.genre_name %>
-			</div>
-			<div class="book-created_at">
-				作成日：<%= book.created_at.strftime('%Y/%m/%d') %>
-			</div>
-			<% if user_signed_in? %>
-			<div class="books-favorite-link">
-				<%= render partial: 'books/books', locals: {book: book} %>
-			</div>
-			<% end %>
-		</div>
+<h2>ジャンル多い順</h2>
+<% @genre.each.with_index(1) do |book, i| %>
+    <div class="box clearfix">
+    <%= link_to book_path(book) do  %>
+        <div class="">第<%= i %>位</div>
+        <div class="contents">
+            <%= book.body %>
+        </div>
+
+        <div class="left-contents">
+            <div class="person-name">
+                回答者：<%= book.person.person_name %>
+            </div>
+            <div class="genre-name">
+                ジャンル：<%= book.genre.genre_name %>
+            </div>
+            <div class="created_at">
+                作成日：<%= book.created_at.strftime('%Y/%m/%d') %>
+            </div>
+        </div>
+
+        <% if user_signed_in? %>
+            <div class="right-contents">
+                <div class="books-favorite-link">
+                    <%= render partial: 'books/books', locals: {book: @book} %>
+                </div>
+            </div>
+        <% end %>
+    <% end %>
+	</div>
 <% end %>
 
-<h3>いいねが多い記事5選</h3>
-<% @home_favorites.each do |book| %>
-    <div class="box">
-			<div class="book-contents">
-				質問内容：<%= link_to book.body, book_path(book) %>
-			</div>
-			<div class="book-person-name">
-				回答者：<%= book.person.person_name %>
-			</div>
-			<div class="book-genre-name">
-				ジャンル：<%= book.genre.genre_name %>
-			</div>
-			<div class="book-created_at">
-				作成日：<%= book.created_at.strftime('%Y/%m/%d') %>
-			</div>
-			<% if user_signed_in? %>
-			<div class="books-favorite-link">
-				<%= render partial: 'books/books', locals: {book: book} %>
-			</div>
-			<% end %>
-		</div>
+<h2>いいねが多い記事5選</h2>
+<% @home_favorites.each.with_index(1) do |book, i| %>
+    <div class="box clearfix">
+    <%= link_to book_path(book) do  %>
+        <div class="">第<%= i %>位</div>
+        <div class="contents">
+            <%= book.body %>
+        </div>
+
+        <div class="left-contents">
+            <div class="person-name">
+                回答者：<%= book.person.person_name %>
+            </div>
+            <div class="genre-name">
+                ジャンル：<%= book.genre.genre_name %>
+            </div>
+            <div class="created_at">
+                作成日：<%= book.created_at.strftime('%Y/%m/%d') %>
+            </div>
+        </div>
+
+        <% if user_signed_in? %>
+            <div class="right-contents">
+                <div class="books-favorite-link">
+                    <%= render partial: 'books/books', locals: {book: @book} %>
+                </div>
+            </div>
+        <% end %>
+    <% end %>
+	</div>
 <% end %>
 

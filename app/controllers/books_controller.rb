@@ -70,7 +70,7 @@ class BooksController < ApplicationController
   	@book = Book.find(params[:id])
   	@book.user_id = current_user.id
   	if @book.update
-  		flash[:notice] = "投稿が作成されました"
+  		flash[:notice] = "質問がが作成されました！"
   		redirect_to book_path(@book)
   	else
   		render "edit"
