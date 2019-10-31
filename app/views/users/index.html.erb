@@ -1,19 +1,13 @@
-<div id="users">
 <h1>ユーザー一覧画面</h1>
 
-
-<table class="table table-striped">
-	<tr>
-		<th>名前</th>
-		<th>自己紹介文</th>
-	</tr>
-
 	<% @users.each do |user| %>
-	<tr>
-		<th><%= user.name %></th>
-		<th><%= user.introduction %></th>
-		<th><%= link_to "show", user_path(user) %></th>
-	</tr>
+		<%= link_to user_path(user) do %>
+			<div id="users">
+				<div class="profile-image"><%= attachment_image_tag user, :profile_image, :fill, 60,60,:class => 'img-circle', fallback: "no_image.jpg" %></div>
+				<div class="user-name">
+					<%= user.name %><br>
+					<%= user.introduction %>
+				</div>
+			</div>
+		<% end %>
 	<% end %>
-</table>
-</div>

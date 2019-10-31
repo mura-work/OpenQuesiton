@@ -1,4 +1,5 @@
 class BooksController < ApplicationController
+	before_action :authenticate_user!, only:[:new, :create, :edit, :update, :destroy]
   def new
   	@book = Book.new
   end
@@ -17,33 +18,40 @@ class BooksController < ApplicationController
   def index
 	if params[:books_name] == nil
 		@books = Book.page(params[:page]).per(10)
-		render :index, locals: { books: @books}
+		@favorite = Book.favorite
+		render :index, locals: { books: @books, favorite: @favorite}
 	elsif params[:books_name] == "2"
 		@books = Book.order(favorites_count: "DESC").page(params[:page]).per(10)
-		render :index, locals: { books: @books}
+		@favorite = Book.favorite
+		render :index, locals: { books: @books, favorite: @favorite}
 	elsif params[:books_name] == "1"
 		@books = Book.order(created_at: "DESC").page(params[:page]).per(10)
-		render :index, locals: { books: @books}
+		@favorite = Book.favorite
+		render :index, locals: { books: @books, favorite: @favorite}
 	end
   end
 
   def search
 	if params[:person][:person_id].empty? && params[:genre][:genre_id].empty?
 		@books = Book.page(params[:page]).per(10)
-		render :index
+		@favorite = Book.favorite
+		render :index, locals: { books: @books, favorite: @favorite}
     elsif params[:person][:person_id].present? && params[:genre][:genre_id].empty?
 		@person_id = params[:person][:person_id].to_i
 		@books = Book.where(person_id: @person_id).page(params[:page]).per(10)
-		render :index, locals: { books: @books}
+		@favorite = Book.favorite
+		render :index, locals: { books: @books, favorite: @favorite}
 	elsif params[:person][:person_id].empty? && params[:genre][:genre_id].present?
 		@genre_id = params[:genre][:genre_id].to_i
 		@books = Book.where(genre_id: @genre_id).page(params[:page]).per(10)
-		render :index, locals: { books: @books}
+		@favorite = Book.favorite
+		render :index, locals: { books: @books, favorite: @favorite}
 	elsif params[:person][:person_id].present? && params[:genre][:genre_id].present?
 		@person_id = params[:person][:person_id].to_i
 		@genre_id = params[:genre][:genre_id].to_i
 		@books = Book.where(person_id: @person_id, genre_id: @genre_id).page(params[:page]).per(10)
-		render :index, locals: { books: @books}
+		@favorite = Book.favorite
+		render :index, locals: { books: @books, favorite: @favorite}
 	end
   end
 

@@ -10,7 +10,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 2019_10_03_144712) do
+ActiveRecord::Schema.define(version: 2019_10_31_095245) do
 
   create_table "book_comments", force: :cascade do |t|
     t.text "comment"
@@ -49,6 +49,11 @@ ActiveRecord::Schema.define(version: 2019_10_03_144712) do
     t.datetime "created_at", null: false
     t.datetime "updated_at", null: false
     t.index ["genre_name"], name: "index_genres_on_genre_name"
+  end
+
+  create_table "homes", force: :cascade do |t|
+    t.datetime "created_at", null: false
+    t.datetime "updated_at", null: false
   end
 
   create_table "people", force: :cascade do |t|
