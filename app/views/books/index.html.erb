@@ -5,7 +5,7 @@
 	<%= collection_select( :genre, :genre_id, Genre.all, :id, :genre_name, { :prompt => "ジャンルを選択" } ) %>
 	<%= submit_tag "絞り込み" %>
 	<% end %>
-	
+
 	<%= form_tag books_path, method: :get do %>
 		<%= select_tag "books_name", options_for_select([["新着順", "1"],["お気に入り順", "2"]]), {:prompt => "選択してください"} %>
 		<%= submit_tag "切り替え" %>
@@ -18,18 +18,43 @@
 				質問内容：<%= link_to book.body, book_path(book) %>
 			</div>
 			<div class="book-person-name">
-				質問者：<%= link_to book.person.person_name, people_path %>
+				回答者：<%= book.person.person_name %>
 			</div>
 			<div class="book-genre-name">
-				ジャンル：<%= link_to book.genre.genre_name, genres_path %>
+				ジャンル：<%= book.genre.genre_name %>
 			</div>
 			<div class="book-created_at">
 				作成日：<%= book.created_at.strftime('%Y/%m/%d') %>
 			</div>
+			<% if user_signed_in? %>
 			<div class="books-favorite-link">
 				<%= render partial: 'books/books', locals: {book: book} %>
 			</div>
+			<% end %>
 		</div>
 	<% end %>
 	<%= paginate @books, class: "paginate" %>
 </div>
+
+<h2>いいねの多いランキング上位5位</h2>
+<% @favorite.each do |book| %>
+	<div class="box">
+			<div class="book-contents">
+				質問内容：<%= link_to book.body, book_path(book) %>
+			</div>
+			<div class="book-person-name">
+				回答者：<%= book.person.person_name %>
+			</div>
+			<div class="book-genre-name">
+				ジャンル：<%= book.genre.genre_name %>
+			</div>
+			<div class="book-created_at">
+				作成日：<%= book.created_at.strftime('%Y/%m/%d') %>
+			</div>
+			<% if user_signed_in? %>
+			<div class="books-favorite-link">
+				<%= render partial: 'books/books', locals: {book: book} %>
+			</div>
+			<% end %>
+		</div>
+<% end %>

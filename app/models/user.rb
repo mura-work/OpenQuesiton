@@ -11,4 +11,6 @@ class User < ApplicationRecord
   has_many :book_comments, dependent: :destroy
   has_many :favorites, dependent: :destroy
   has_many :favorited_books, through: :favorites, source: :book
+
+  validates :introduction, length: { maximum: 80 }
 end

@@ -16,8 +16,8 @@
 		<h4>誰に答えてほしいか</h4>
 		<%= f.collection_select(:person_id, Person.all, :id, :person_name, { :prompt => "選択してください" , :multiple => true } ) %>
 		<h4>ジャンル</h4>
-		<%= f.collection_select(:genre_id, Genre.all, :id, :genre_name, { :prompt => "選択してください" , :multiple => true } ) %>
-		<%= f.submit "質問を送る" %>
+		<%= f.collection_select(:genre_id, Genre.all, :id, :genre_name, { :prompt => "選択してください" , :multiple => true } ) %><br>
+		<%= f.submit "質問を送る", :class => "btn btn-primary" %>
 	<% end %>
 </div>
 

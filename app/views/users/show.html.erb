@@ -1,8 +1,11 @@
 
-<div id="users">
+<div id="users-show">
 <h1>User詳細画面</h1>
-	<%= link_to "編集", edit_user_path(@user) %>
-
+	<%= link_to "編集", edit_user_path(@user), :class => "btn btn-primary" %>
+	<h4>背景画像</h4>
+	<%= attachment_image_tag @user, :back_image, :fill, 60,100 %>
+	<h4>画像</h4>
+	<%= attachment_image_tag @user, :profile_image, :fill, 60,60,:class => 'img-circle', fallback: "no_image.jpg" %>
 	<h4>名前</h4>
 	<%= @user.name %>
 	<h4>自己紹介文</h4>

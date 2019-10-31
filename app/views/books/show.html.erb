@@ -14,9 +14,11 @@
 			<div class="book-created_at">
 				作成日：<%= @book.created_at.strftime('%Y/%m/%d') %>
 			</div>
+			<% if user_signed_in? %>
 			<div class="books-favorite-link">
 				<%= render partial: 'books/books', locals: {book: @book} %>
 			</div>
+			<% end %>
 	</div>
 
 	<% @book.book_comments.each do |book_comment| %>
@@ -36,7 +38,7 @@
 	<% end %>
 
 		<%= form_for [@book, @book_comment] do |f| %>
-		<%= f.text_area :comment, rows: '5', class: "form-control" %>
+		<%= f.text_area :comment, rows: '5', class: "form-control", placeholder: "コメントをここに" %>
 		<%= f.submit "コメントを投稿する" %>
 		<% end %>
 </div>
