@@ -1,24 +1,23 @@
 # README
+## Open Question
+匿名で質問を投稿できるサイトです
 
-This README would normally document whatever steps are necessary to get the
-application up and running.
+## 使用技術
+* Ruby 2.5.5
+* Ruby on Rails 5.2.3
+* MySQL
+* AWS
 
-Things you may want to cover:
-
-* Ruby version
-
-* System dependencies
-
-* Configuration
-
-* Database creation
-
-* Database initialization
-
-* How to run the test suite
-
-* Services (job queues, cache servers, search engines, etc.)
-
-* Deployment instructions
-
-* ...
+## 機能一覧
+* 投稿機能
+投稿削除機能
+投稿編集機能
+投稿検索機能
+コメント投稿機能
+コメント編集機能
+コメント削除機能
+管理者ページ機能
+管理者ページ編集機能
+管理者検索機能
+いいね機能（Ajax）
+タグ機能

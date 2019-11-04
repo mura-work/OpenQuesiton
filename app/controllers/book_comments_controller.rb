@@ -16,6 +16,18 @@ class BookCommentsController < ApplicationController
 		end
 	end
 
+	def edit
+		@book = Book.find(params[:book_id])
+		@comment = BookComment.find(params[:id])
+	end
+
+	def update
+		@book = Book.find(params[:book_id])
+		@comment = BookComment.find(params[:id])
+		@comment.update(book_comment_params)
+		redirect_to book_path(@comment.book)
+	end
+
 	def destroy
 		@book_comment = BookComment.find(params[:id])
 		@book_comment.destroy

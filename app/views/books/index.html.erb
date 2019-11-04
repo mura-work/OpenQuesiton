@@ -20,7 +20,7 @@
 
 	<% @books.each do |book| %>
 		<div class="box clearfix">
-    <%= link_to book_path(book) do  %>
+    	<%= link_to book_path(book) do  %>
 			<div class="contents">
 				<%= book.body %>
 			</div>

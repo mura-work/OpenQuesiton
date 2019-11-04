@@ -9,7 +9,7 @@ Rails.application.routes.draw do
   resources :genres
   resources :users
   resources :books do
-    resource :book_comments, only: [:create, :destroy]
+    resource :book_comments, only: [:create, :destroy, :edit, :update]
     resource :favorites, only: [:create, :destroy]
     collection do
       match 'search' => 'books#search', via: [:get, :post]
