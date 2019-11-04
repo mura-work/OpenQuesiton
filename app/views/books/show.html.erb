@@ -1,6 +1,6 @@
 <div id="books">
 <h1>質問内容</h1>
-	<div class="box1 clearfix">
+	<div class="box clearfix">
 		<div class="contents">
 			<%= @book.body %>
 		</div>
@@ -39,6 +39,7 @@
 					<%= book_comment.created_at.strftime('%Y/%m/%d') %>
 				</div>
 				<%= link_to "Destroy", book_book_comments_path(book_id: @book, id: book_comment.id), method: :delete, "data-confirm" => "本当に削除しますか？", :class => "btn btn-danger show" %>
+				<%#= link_to "編集", edit_book_book_comments_path(book_id: @book, id: book_comment.id), :class => "btn btn-danger show" %>
 			</div>
 			<div class="show-right-contents">
 				<div class="comment-info">

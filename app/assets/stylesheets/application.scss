@@ -29,8 +29,20 @@
  clear:both;
  }
 
- header {
+ nav {
      color: white;
+ }
+
+ .navbar-inverse .navbar-toggle {
+     border-color: white;
+ }
+
+.icon-var{
+    border-color: white;
+ }
+
+ .title{
+     margin-left:30px;
  }
 
  body {
