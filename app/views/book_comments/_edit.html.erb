@@ -1,0 +1,6 @@
+<h1>回答編集ページ</h1>
+<%= form_for @comment, remote: true do |f| %>
+	<%= f.text_area :comment, rows: '5', class: "form-control", placeholder: "コメントをここに" %>
+	<%= f.submit "コメントを投稿する", :class => "btn btn-primary show" %>
+<% end %>
+

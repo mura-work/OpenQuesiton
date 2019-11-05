@@ -27,35 +27,15 @@
 	</div>
 
 	<h2>↓↓質問に対する回答はこちら↓↓</h2>
-
-	<% @book.book_comments.each do |book_comment| %>
+	<div id="comment_area">
+		<% @book.book_comments.each do |book_comment| %>
 		<div class="box1 clearfix">
-			<div class="comment">
-				<%= book_comment.comment %>
-			</div>
-
-			<div class="show-left-contents">
-				<div class="comment-date">
-					<%= book_comment.created_at.strftime('%Y/%m/%d') %>
-				</div>
-				<%= link_to "Destroy", book_book_comments_path(book_id: @book, id: book_comment.id), method: :delete, "data-confirm" => "本当に削除しますか？", :class => "btn btn-danger show" %>
-				<%#= link_to "編集", edit_book_book_comments_path(book_id: @book, id: book_comment.id), :class => "btn btn-danger show" %>
-			</div>
-			<div class="show-right-contents">
-				<div class="comment-info">
-					<%= attachment_image_tag book_comment.user, :profile_image, :fill, 60,60, :class => 'img-circle', fallback: "no_image.jpg" %>
-				</div>
-				<div class="comment-user">
-					<%= book_comment.user.name %>
-				</div>
-			</div>
+			<%= render 'book_comments/book_comments', book_comment: @book.book_comment %>
 		</div>
-	<% end %>
+		<% end %>
+	</div>	
 	<br>
-
-	<%= form_for [@book, @book_comment] do |f| %>
-	<%= f.text_area :comment, rows: '5', class: "form-control", placeholder: "コメントをここに" %>
-	<%= f.submit "コメントを投稿する", :class => "btn btn-primary show" %>
-	<% end %>
-
+	<div id="comment_form">
+		<%= render 'book_comments/comment_form', comment: @comment, book: @book %>
+	</div>
 </div>

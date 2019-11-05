@@ -1,7 +1,5 @@
-<h1>回答編集ページ</h1>
-<%= form_for [@comment] do |f| %>
+<%= form_for comment, remote: true do |f| %>
 	<%= f.text_area :comment, rows: '5', class: "form-control", placeholder: "コメントをここに" %>
+	<%= hidden_field_tag :book_id, book.id %>
 	<%= f.submit "コメントを投稿する", :class => "btn btn-primary show" %>
 <% end %>
-
-<%= link_to "前に戻る", book_path(@comment.book) %>
