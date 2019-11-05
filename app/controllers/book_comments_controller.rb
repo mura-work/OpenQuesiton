@@ -3,29 +3,33 @@ class BookCommentsController < ApplicationController
 	def create
 		@book = Book.find(params[:book_id])
 	    comment = current_user.book_comments.new(book_comment_params)
-	    comment.book_id = @book.id
+		comment.book_id = @book.id
 		if  comment.save
-		    flash[:notice] = "投稿が作成されました"
-			redirect_to book_path(book)
+			flash[:notice] = "コメントが作成されました"
+			@comment = BookComment.new
 		else
 			@book = Book.find(params[:book_id])
-			@book_comment = BookComment.new
+			@comment = BookComment.new
 			  @comment = BookComment.where(params[:book_id])
 			  flash[:notice] = "コメントが作成できませんでした。"
-			render "books/show"
 		end
 	end
 
 	def edit
-		@book = Book.find(params[:book_id])
 		@comment = BookComment.find(params[:id])
 	end
 
 	def update
 		@book = Book.find(params[:book_id])
 		@comment = BookComment.find(params[:id])
-		@comment.update(book_comment_params)
-		redirect_to book_path(@comment.book)
+		if @comment.update(book_comment_params)
+			flash[:notice] = "投稿が作成されました"
+			redirect_to book_path(@comment.book)
+		else
+			@book = Book.find(params[:book_id])
+			@comment = BookComment.find(params[:id])
+			flash[:notice] = "コメントが作成できませんでした。"
+		end
 	end
 
 	def destroy
