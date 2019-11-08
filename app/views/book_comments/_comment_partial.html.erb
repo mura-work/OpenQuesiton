@@ -1,0 +1,21 @@
+<div class="box1 clearfix" data-comment="<%= book_comment.id %>">
+		<div class="comment">
+			<%= book_comment.comment %>
+		</div>
+
+		<div class="show-left-contents">
+			<div class="comment-date">
+				<%= book_comment.created_at.strftime('%Y/%m/%d') %>
+			</div>
+			<%= link_to "削除", book_comment_path(book_comment), method: :delete, "data-confirm" => "本当に削除しますか？", :class => "btn btn-danger show" %>
+			<%= link_to "編集", edit_book_comment_path(book_comment), remote: true, :class => "btn btn-primary show" %>
+		</div>
+		<div class="show-right-contents">
+			<div class="comment-info">
+				<%= attachment_image_tag book_comment.user, :profile_image, :fill, 60,60, :class => 'img-circle', fallback: "no_image.jpg" %>
+			</div>
+			<div class="comment-user">
+				<%= book_comment.user.name %>
+			</div>
+		</div>
+</div>

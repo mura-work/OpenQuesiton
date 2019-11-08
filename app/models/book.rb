@@ -5,6 +5,7 @@ class Book < ApplicationRecord
 	has_many :book_comments, dependent: :destroy
 	has_many :favorites, dependent: :destroy
 	has_many :favorited_users, through: :favorites, source: :user
+	validates :body, presence:true
 
 	def self.favorite
 		 Book.find(Favorite.group(:book_id).order('count(book_id) desc').limit(3).pluck(:book_id))

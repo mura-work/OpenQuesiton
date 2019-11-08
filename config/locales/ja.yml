@@ -1,0 +1,9 @@
+ja:
+  activerecord:
+    models:
+      book: 質問
+    attributes:
+      book:
+        body: 質問内容
+        person_id: 回答者名
+        genre_id: ジャンル名
