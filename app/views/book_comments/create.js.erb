@@ -1,2 +1,2 @@
-$('#comment_area').html("<%= escape_javascript(render 'book_comments', book_comments: @book.book_comments) %>");
+$('#comment_area').html("<%= escape_javascript(render 'book_comment', book: @book) %>");
 $('#comment_form').html("<%= escape_javascript(render 'comment_form', comment: @comment, book: @book) %>");

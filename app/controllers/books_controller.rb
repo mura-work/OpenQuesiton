@@ -1,5 +1,5 @@
 class BooksController < ApplicationController
-	before_action :authenticate_user!, only:[:new, :create, :edit, :update, :destroy]
+	before_action :authenticate_user!, only:[:show, :new, :create, :edit, :update, :destroy]
   def new
   	@book = Book.new
   end
@@ -59,7 +59,7 @@ class BooksController < ApplicationController
   def show
   	@book = Book.find(params[:id])
   	@comment = BookComment.new
-  	@comments = BookComment.where(params[:book_id])
+	@book_comment = Book.where(params[:book_id])
   end
 
   def edit

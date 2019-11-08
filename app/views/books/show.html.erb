@@ -27,13 +27,9 @@
 	</div>
 
 	<h2>↓↓質問に対する回答はこちら↓↓</h2>
-	<div id="comment_area">
-		<% @book.book_comments.each do |book_comment| %>
-		<div class="box1 clearfix">
-			<%= render 'book_comments/book_comments', book_comment: @book.book_comment %>
+		<div id="comment_area">
+			<%= render partial: 'book_comments/book_comment', locals: { book: @book } %>
 		</div>
-		<% end %>
-	</div>	
 	<br>
 	<div id="comment_form">
 		<%= render 'book_comments/comment_form', comment: @comment, book: @book %>

@@ -7,16 +7,17 @@ class BookCommentsController < ApplicationController
 		if  comment.save
 			flash[:notice] = "コメントが作成されました"
 			@comment = BookComment.new
+			@book_comment = @book.book_comments
 		else
 			@book = Book.find(params[:book_id])
 			@comment = BookComment.new
-			  @comment = BookComment.where(params[:book_id])
+			@book_comment = @book.book_comments
 			  flash[:notice] = "コメントが作成できませんでした。"
 		end
 	end
 
 	def edit
-		@comment = BookComment.find(params[:id])
+		@book_comment = BookComment.find(params[:id]).id
 	end
 
 	def update
