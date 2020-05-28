@@ -71,6 +71,6 @@ gem 'jquery-rails'
 
 gem 'pry-byebug'
 
-gem 'kaminari', '~> 0.17.0'
+gem 'kaminari', '~> 1.2.1'
 gem 'rails-i18n'
 
